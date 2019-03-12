@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>OMDB API Demo</title>
+	<link rel="stylesheet" href="style.css"/>
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<style>
+		* {
+		box-sizing: border-box;
+		}
+		body{
+			font-family: 'Roboto', sans-serif;
+		}
+		.container {
+			width: 100%;
+			padding-right: 15px;
+			padding-left: 15px;
+			margin-right: auto;
+			margin-left: auto;
+		}
+		@media (min-width: 1200px)
+		{
+			.container {
+				max-width: 1120px!important;
+			}
+		}
+		@media (max-width: 992px)
+		{
+			.container {
+				max-width: 960px;
+			}
+		}
+		@media (max-width: 768px)
+		{
+			.container {
+				max-width: 720px;
+			}
+		}
+		@media (max-width: 576px)
+		{
+			.container {
+				max-width: 540px;
+			}
+		}
+		.full-form{
+			font-size:1rem;
+			font:inherit;
+		}
+		.header{
+			background-color:#fff;
+			padding: 1rem 2rem;
+			margin-top:1rem;
+			background-image:url(header.png);
+			background-color:#cdffd3;
+		}
+		.well {
+			min-height: 20px;
+			padding: 19px;
+			margin-bottom: 20px;
+			background-color: transperent;
+			border: 1px solid #e3e3e3;
+			border-radius: 4px;
+			-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+			box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+			background-color:#eee;
+		}
+		.table-border {
+			border: 1px solid #ddd;
+		}
+
+		.table {
+			width: 100%;
+			max-width: 100%;
+			margin-bottom: 20px;
+		}
+		table {
+			background-color: transparent;
+		}
+		table {
+			border-spacing: 0;
+			border-collapse: collapse;
+		}
+		.table>thead>tr>th {
+			vertical-align: bottom;
+			border-bottom: 2px solid #ddd;
+			font-weight:bold;
+		}
+		.table>thead:first-child>tr:first-child>th {
+			border-top: 0;
+		}
+		.table>thead>tr>th, .table>tbody>tr>td {
+			padding: 8px;
+			line-height: 1.42857143;
+			vertical-align: top;
+			border-top: 1px solid #ddd;
+		}
+		th {
+			text-align: left;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<h1 class="display-4">OMdb API</h1>
+			<h3 class="full-form">The Open Movie Database</h3>
+			<p>The OMDb API is a RESTful web service to obtain movie information, all content and images on the site are contributed and maintained by our users. </p>
+		</div>
+		<div class="usage">
+			<h1 class="display-1">Usage</h1>
+			<p>Send all data request to:</p>
+			<p class="well">http://www.omdbapi.com/?apikey=[YOURAPI]&</p>
+			<p>Poster API requests:</p>
+			<p class="well">http://img.omdbapi.com/?apikey=[YOURAPI]&</p>
+		</div>
+		<div class="parameter">
+			<h1 class="display-1">Parameter</h1>
+			<p>By ID or Title</p>
+			<table class="table table-border" style="padding-bottom:1rem; ">
+				<thead>
+					<tr>
+						<th>Parameter</th>
+						<th>Discription</th>
+					</tr>
+				</thead>
+				</tbody>
+					<tr>
+						<td>i</td>
+						<td>A valid imdbId(eg.tt1285016).</td>
+					</tr>
+					<tr>
+						<td>t</td>
+						<td>Movie title to search for.</td>
+					</tr>
+					<tr>
+						<td>type </td>
+						<td>Type of result to return.</td>
+					</tr>
+					<tr>
+						<td>y</td>
+						<td>Year of release.</td>
+					</tr>
+					<tr>
+						<td>plot</td>
+						<td>Return short or full plot.</td>
+					</tr>
+					<tr>
+						<td>r</td>
+						<td>The data type to return.</td>
+					</tr>
+					<tr>
+						<td>callback</td>
+						<td>JSONP callback name.</td>
+					</tr>
+					<tr>
+						<td>v</td>
+						<td>API version.</td>
+					</tr>
+				</tbody>
+			</table>
+			<p>By Search</p>
+			<table class="table table-border" style="padding-bottom:1rem; ">
+				<thead>
+					<tr>
+						<th>Parameter</th>
+						<th>Discription</th>
+					</tr>
+				</thead>
+				</tbody>
+					<tr>
+						<td>s</td>
+						<td>Movie title to search for.</td>
+					</tr>
+					<tr>
+						<td>type </td>
+						<td>Type of result to return.</td>
+					</tr>
+					<tr>
+						<td>y</td>
+						<td>Year of release.</td>
+					</tr>
+					<tr>
+						<td>r</td>
+						<td>The data type to return.</td>
+					</tr>
+					<tr>
+						<td>page</td>
+						<td>Page number to return.</td>
+					</tr>
+					<tr>
+						<td>callback</td>
+						<td>JSONP callback name.</td>
+					</tr>
+					<tr>
+						<td>v</td>
+						<td>API version.</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="request">
+			<h1 class="display-1">Request/Response</h1>
+			<p>JSON Request:</p>
+			<p class="well">http://www.omdbapi.com/?apikey=80b3264b&s=batman</p>
+			<p>JSON Response:</p>
+			<p class="well" style="font-size:87.5%; ">{<br/>
+				<span style="padding-left:2rem;">"Search":</span> [<br/>
+				<span style="padding-left:4rem;">{</span><br/>
+				<span style="padding-left:8rem;">"Title": "Batman Begins",</span><br/>
+				<span style="padding-left:8rem;">"Year": "2005",</span><br/>
+				<span style="padding-left:8rem;">"imdbID": "tt0372784",</span><br/>
+				<span style="padding-left:8rem;">"Type": "movie",</span><br/>
+				<span style="padding-left:8rem;">"Poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BYzc4ODgyZmYtMGFkZC00NGQyLWJiMDItMmFmNjJiZjcxYzVmXkEyXkFqcGdeQXVyNDYyMDk5MTU@._V1_SX300.jpg"</span><br/>
+				<span style="padding-left:4rem;">},</span><br/>
+				<span style="padding-left:4rem;">{..},</span><br/>
+				<span style="padding-left:2rem;">],</span><br/>
+				<span style="padding-left:2rem;">"totalResults": "338",</span><br/>
+				<span style="padding-left:2rem;">"Response": "True"</span><br/>
+				}
+			</p>
+		</div>
+	</div>
+</body>
+</html>
